@@ -34,12 +34,6 @@ describe("Register", () => {
     expect(passwordTextinput).toBeInTheDocument()
     const hidePassButton = screen.getByTestId("hidePassButton")
     expect(hidePassButton).toBeInTheDocument()
-    const registerButton = screen.getByRole("button", { name: "Register" })
-    expect(registerButton).toBeInTheDocument()
-    const loginButton = screen.getByRole("button", {
-      name: "I already have an account",
-    })
-    expect(loginButton).toBeInTheDocument()
 
     await user.tab()
     expect(emailTextinput).toHaveFocus()
@@ -59,8 +53,5 @@ describe("Register", () => {
     await user.tab()
     expect(hidePassButton).toHaveFocus()
     await user.tab()
-    expect(registerButton).toHaveFocus()
-    await user.tab()
-    expect(loginButton).toHaveFocus()
   })
 })

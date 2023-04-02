@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import {
   TextField,
   Box,
@@ -13,6 +13,7 @@ import Logo from "assets/logo0.png"
 import Header from "modules/register/components/header/Header"
 import { MyTextField } from "modules/common/MyTextField"
 import { register } from "modules/register/services/Register"
+import Footer from "./components/footer/Footer"
 
 export default function Register() {
   const [visible, setVisible] = useState(false)
@@ -149,31 +150,14 @@ export default function Register() {
             }}
           />
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            flexDirection: "column",
-            m: 0,
-          }}
-        >
-          <Button
-            onClick={handleRegister}
-            variant="contained"
-            disabled={
-              !email || !firstName || !lastName || !phoneNumber || !password
-            }
-            size="small"
-            sx={{ m: 1 }}
-          >
-            Register
-          </Button>
-          <Button variant="outlined" size="small" sx={{ m: 1 }}>
-            I already have an account
-          </Button>
-        </Box>
+        <Footer
+          handleRegister={handleRegister}
+          email={email}
+          firstName={firstName}
+          lastName={lastName}
+          phoneNumber={phoneNumber}
+          password={password}
+        />
       </Box>
     </Box>
   )

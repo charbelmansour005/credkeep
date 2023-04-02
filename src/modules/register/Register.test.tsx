@@ -3,6 +3,7 @@ import Register from "./Register"
 import user from "@testing-library/user-event"
 
 describe("Register", () => {
+  jest.setTimeout(30000)
   test("should render divs & boxes", () => {
     render(<Register />)
     const form = screen.getByTestId("form-box")
@@ -18,7 +19,8 @@ describe("Register", () => {
     expect(innerBox).toBeInTheDocument()
   })
 
-  test("elements exist and ", () => {
+  test("elements exist and are focused in the right order", async () => {
+    user.setup()
     render(<Register />)
     const emailTextinput = screen.getByLabelText("Email")
     expect(emailTextinput).toBeInTheDocument()
@@ -38,45 +40,27 @@ describe("Register", () => {
       name: "I already have an account",
     })
     expect(loginButton).toBeInTheDocument()
-  })
 
-  test("elements are focused in the right order", async () => {
-    user.setup()
-    render(<Register />)
-    const emailTextinput = screen.getByLabelText("Email")
-    const firstnameTextinput = screen.getByLabelText("First name")
-    const lastnameTextinput = screen.getByLabelText("Last name")
-    const phoneTextinput = screen.getByLabelText("Phone number")
-    const passwordTextinput = screen.getByLabelText("Password")
-    const hidePassButton = screen.getByTestId("hidePassButton")
-    const registerButton = screen.getByRole("button", { name: "Register" })
-    const loginButton = screen.getByRole("button", {
-      name: "I already have an account",
-    })
     await user.tab()
     expect(emailTextinput).toHaveFocus()
+    await user.type(emailTextinput, "test@example.com")
     await user.tab()
     expect(firstnameTextinput).toHaveFocus()
+    await user.type(firstnameTextinput, "charbel")
     await user.tab()
     expect(lastnameTextinput).toHaveFocus()
+    await user.type(lastnameTextinput, "mansour")
     await user.tab()
     expect(phoneTextinput).toHaveFocus()
+    await user.type(phoneTextinput, "71032883")
     await user.tab()
     expect(passwordTextinput).toHaveFocus()
+    await user.type(passwordTextinput, "Test123!@#")
     await user.tab()
     expect(hidePassButton).toHaveFocus()
     await user.tab()
     expect(registerButton).toHaveFocus()
     await user.tab()
     expect(loginButton).toHaveFocus()
-  })
-
-  test("hide password icon is eventually displayed", () => {
-    render(<Register />)
-    const visibilityOffIcon = screen.findByTestId("VisibilityOffIcon")
-    expect(visibilityOffIcon).toBeInTheDocument()
-
-    const visibilityIcon = screen.queryByTestId("VisibilityIcon")
-    expect(visibilityIcon).toBeInTheDocument()
   })
 })

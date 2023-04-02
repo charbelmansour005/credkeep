@@ -12,6 +12,7 @@ import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material"
 import Logo from "assets/logo0.png"
 import Header from "modules/register/components/header/Header"
 import { MyTextField } from "modules/common/MyTextField"
+import { register } from "modules/register/services/Register"
 
 export default function Register() {
   const [visible, setVisible] = useState(false)
@@ -44,6 +45,15 @@ export default function Register() {
   const isScreenSmall = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("sm")
   )
+
+  const handleRegister = () => {
+    register(email, firstName, lastName, phoneNumber, password)
+    setEmail("")
+    setFirstName("")
+    setLastName("")
+    setPhoneNumber("")
+    setPassword("")
+  }
 
   return (
     <Box
@@ -149,7 +159,15 @@ export default function Register() {
             m: 0,
           }}
         >
-          <Button variant="outlined" size="small" sx={{ m: 1 }}>
+          <Button
+            onClick={handleRegister}
+            variant="contained"
+            disabled={
+              !email || !firstName || !lastName || !phoneNumber || !password
+            }
+            size="small"
+            sx={{ m: 1 }}
+          >
             Register
           </Button>
           <Button variant="outlined" size="small" sx={{ m: 1 }}>

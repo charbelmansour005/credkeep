@@ -1,8 +1,7 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useCallback, useState } from "react"
 import {
   TextField,
   Box,
-  Button,
   InputAdornment,
   IconButton,
   useMediaQuery,
@@ -47,14 +46,14 @@ export default function Register() {
     theme.breakpoints.down("sm")
   )
 
-  const handleRegister = () => {
+  const handleRegister = useCallback(() => {
     register(email, firstName, lastName, phoneNumber, password)
     setEmail("")
     setFirstName("")
     setLastName("")
     setPhoneNumber("")
     setPassword("")
-  }
+  }, [email, firstName, lastName, phoneNumber, password])
 
   return (
     <Box
@@ -68,10 +67,10 @@ export default function Register() {
         flexDirection: "column",
         minHeight: "100vh",
         background:
-          "linear-gradient(-45deg, #f95959,#ffffff,#ffffff,#ffffff, #f95959)",
+          "linear-gradient(-45deg, #f95959,#ffffff,#ffffff,#ffffff, #ffffff)",
       }}
     >
-      <img src={Logo} style={{ height: "180px", width: "180px" }} />
+      <img alt="logo" src={Logo} style={{ height: "180px", width: "180px" }} />
       <Header />
       <Box
         data-testid="outer-box"

@@ -8,19 +8,19 @@ import {
   Theme,
 } from "@mui/material"
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material"
-import Logo from "assets/logo0.png"
 import Header from "modules/register/components/header/Header"
 import { MyTextField } from "modules/common/MyTextField"
 import { register } from "modules/register/services/Register"
-import Footer from "./components/footer/Footer"
+import Footer from "modules/register/components/footer/Footer"
+import HeaderLogo from "modules/register/components/header/HeaderLogo"
 
 export default function Register() {
-  const [visible, setVisible] = useState(false)
-  const [email, setEmail] = useState("")
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [password, setPassword] = useState("")
+  const [visible, setVisible] = useState<boolean>(false)
+  const [email, setEmail] = useState<string | null>(null)
+  const [firstName, setFirstName] = useState<string | null>(null)
+  const [lastName, setLastName] = useState<string | null>(null)
+  const [phoneNumber, setPhoneNumber] = useState<string | null>(null)
+  const [password, setPassword] = useState<string | null>(null)
 
   const handleEmailChange = (value: string) => {
     setEmail(value)
@@ -67,10 +67,10 @@ export default function Register() {
         flexDirection: "column",
         minHeight: "100vh",
         background:
-          "linear-gradient(-45deg, #f95959,#ffffff,#ffffff,#ffffff, #ffffff)",
+          "linear-gradient(45deg, #f95959,#ffffff,#ffffff,#ffffff, #ffffff)",
       }}
     >
-      <img alt="logo" src={Logo} style={{ height: "180px", width: "180px" }} />
+      <HeaderLogo />
       <Header />
       <Box
         data-testid="outer-box"

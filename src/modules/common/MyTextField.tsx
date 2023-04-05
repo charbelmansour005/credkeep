@@ -21,7 +21,7 @@ export const MyTextField: React.FC<MyTextFieldProps> = ({
 
   return (
     <TextField
-      sx={{ m: 1.5 }}
+      sx={{ mt: 1.5, mb: 1.5 }}
       id={id}
       label={label}
       variant="outlined"

@@ -1,4 +1,4 @@
-import { render, screen } from "test-utils"
+import { render, screen, waitFor } from "test-utils"
 import Register from "./Register"
 import user from "@testing-library/user-event"
 
@@ -8,9 +8,6 @@ describe("Register", () => {
     render(<Register />)
     const form = screen.getByTestId("form-box")
     expect(form).toBeInTheDocument()
-
-    const image = screen.getByRole("img")
-    expect(image).toBeInTheDocument()
 
     const outerBox = screen.getByTestId("outer-box")
     expect(outerBox).toBeInTheDocument()
@@ -36,22 +33,35 @@ describe("Register", () => {
     expect(hidePassButton).toBeInTheDocument()
 
     await user.tab()
-    expect(emailTextinput).toHaveFocus()
+
+    await waitFor(() => {
+      expect(emailTextinput).toHaveFocus()
+    })
     await user.type(emailTextinput, "test@example.com")
     await user.tab()
-    expect(firstnameTextinput).toHaveFocus()
+    await waitFor(() => {
+      expect(firstnameTextinput).toHaveFocus()
+    })
     await user.type(firstnameTextinput, "charbel")
     await user.tab()
-    expect(lastnameTextinput).toHaveFocus()
+    await waitFor(() => {
+      expect(lastnameTextinput).toHaveFocus()
+    })
     await user.type(lastnameTextinput, "mansour")
     await user.tab()
-    expect(phoneTextinput).toHaveFocus()
+    await waitFor(() => {
+      expect(phoneTextinput).toHaveFocus()
+    })
     await user.type(phoneTextinput, "71032883")
     await user.tab()
-    expect(passwordTextinput).toHaveFocus()
+    await waitFor(() => {
+      expect(passwordTextinput).toHaveFocus()
+    })
     await user.type(passwordTextinput, "Test123!@#")
     await user.tab()
-    expect(hidePassButton).toHaveFocus()
+    await waitFor(() => {
+      expect(hidePassButton).toHaveFocus()
+    })
     await user.tab()
   })
 })

@@ -1,8 +1,8 @@
 export type FooterProps = {
   handleRegister?: () => void
-  email: string
-  firstName: string
-  lastName: string
-  phoneNumber: string
-  password: string
+  email: string | null
+  firstName: string | null
+  lastName: string | null
+  phoneNumber: string | null
+  password: string | null
 }

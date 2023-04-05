@@ -2,11 +2,11 @@ import axios from "axios"
 import { registerURL } from "api/API"
 
 export const register = async (
-  email: string,
-  firstName: string,
-  lastName: string,
-  phoneNumber: string,
-  password: string
+  email: string | null,
+  firstName: string | null,
+  lastName: string | null,
+  phoneNumber: string | null,
+  password: string | null
 ) => {
   try {
     const data = {

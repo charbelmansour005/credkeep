@@ -17,21 +17,20 @@ export default function Footer({
         justifyContent: "center",
         width: "100%",
         flexDirection: "column",
-        m: 0,
       }}
     >
       <Button
         onClick={handleRegister}
-        variant="contained"
+        variant="outlined"
         disabled={
           !email || !firstName || !lastName || !phoneNumber || !password
         }
         size="small"
-        sx={{ m: 1 }}
+        sx={{ mt: 3 }}
       >
         Register
       </Button>
-      <Button variant="outlined" size="small" sx={{ m: 1 }}>
+      <Button variant="outlined" size="small" sx={{ mt: 3 }}>
         I already have an account
       </Button>
     </Box>

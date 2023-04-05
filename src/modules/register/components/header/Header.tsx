@@ -1,12 +1,12 @@
-import { Typography, Chip } from "@mui/material"
+import { Chip } from "@mui/material"
 
 export default function Header() {
   return (
     <Chip
-      sx={{ mb: 1.5, color: "black" }}
+      sx={{ mb: 1.5, color: "gray" }}
       size="small"
       label="Protect your digital identity with Credkeep."
-      variant="filled"
+      variant="outlined"
     />
   )
 }

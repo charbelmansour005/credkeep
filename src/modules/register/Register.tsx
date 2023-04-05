@@ -4,8 +4,9 @@ import {
   Box,
   InputAdornment,
   IconButton,
-  useMediaQuery,
-  Theme,
+  // useMediaQuery,
+  // Theme,
+  Grid,
 } from "@mui/material"
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material"
 import Header from "modules/register/components/header/Header"
@@ -42,9 +43,9 @@ export default function Register() {
     setPassword(event.target.value)
   }
 
-  const isScreenSmall = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down("sm")
-  )
+  // const isScreenSmall = useMediaQuery((theme: Theme) =>
+  //   theme.breakpoints.down("sm")
+  // )
 
   const handleRegister = useCallback(() => {
     register(email, firstName, lastName, phoneNumber, password)
@@ -56,72 +57,86 @@ export default function Register() {
   }, [email, firstName, lastName, phoneNumber, password])
 
   return (
-    <Box
+    <Grid
       component={"form"}
       data-testid="form-box"
+      container
       sx={{
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
-        display: "flex",
-        flexDirection: "column",
         minHeight: "100vh",
         background:
           "linear-gradient(45deg, #f95959,#ffffff,#ffffff,#ffffff, #ffffff)",
       }}
     >
-      <HeaderLogo />
-      <Header />
-      <Box
-        data-testid="outer-box"
+      <Grid
+        data-testid="outer-grid-1"
+        item
+        xs={12}
+        md={6}
         sx={{
           p: 1,
           borderRadius: 1,
-          width: "40vw",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Box
-          data-testid="inner-box"
+        <HeaderLogo />
+        <Header />
+      </Grid>
+      <Grid
+        sx={{
+          p: 1,
+          borderRadius: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        item
+        xs={12}
+        md={6}
+      >
+        <Grid
+          data-testid="outer-grid-2"
+          item
+          xs={12}
+          md={6}
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: isScreenSmall ? "wrap" : undefined,
+            p: 1,
+            borderRadius: 1,
           }}
         >
-          <MyTextField
-            id="outlined-basic-email"
-            label="Email"
-            onChange={handleEmailChange}
-            value={email}
-          />
-          <MyTextField
-            id="outlined-basic-firstname"
-            label="First name"
-            onChange={handleFirstNameChange}
-            value={firstName}
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: isScreenSmall ? "wrap" : undefined,
-          }}
-        >
-          <MyTextField
-            id="outlined-basic-lastname"
-            label="Last name"
-            onChange={handleLastNameChange}
-            value={lastName}
-          />
-          <MyTextField
-            id="outlined-basic-phonenumber"
-            label="Phone number"
-            onChange={handlePhoneNumberChange}
-            value={phoneNumber}
-          />
-        </Box>
-        <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <Box data-testid="inner-box">
+            <MyTextField
+              id="outlined-basic-email"
+              label="Email"
+              onChange={handleEmailChange}
+              value={email}
+            />
+            <MyTextField
+              id="outlined-basic-firstname"
+              label="First name"
+              onChange={handleFirstNameChange}
+              value={firstName}
+            />
+          </Box>
+          <Box>
+            <MyTextField
+              id="outlined-basic-lastname"
+              label="Last name"
+              onChange={handleLastNameChange}
+              value={lastName}
+            />
+            <MyTextField
+              id="outlined-basic-phonenumber"
+              label="Phone number"
+              onChange={handlePhoneNumberChange}
+              value={phoneNumber}
+            />
+          </Box>
           <TextField
             label="Password"
             id="outlined-start-adornment"
@@ -130,7 +145,7 @@ export default function Register() {
             value={password}
             type={visible ? "text" : "password"}
             fullWidth
-            sx={{ m: 1.5 }}
+            sx={{ mt: 1.5 }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -148,16 +163,16 @@ export default function Register() {
               ),
             }}
           />
-        </Box>
-        <Footer
-          handleRegister={handleRegister}
-          email={email}
-          firstName={firstName}
-          lastName={lastName}
-          phoneNumber={phoneNumber}
-          password={password}
-        />
-      </Box>
-    </Box>
+          <Footer
+            handleRegister={handleRegister}
+            email={email}
+            firstName={firstName}
+            lastName={lastName}
+            phoneNumber={phoneNumber}
+            password={password}
+          />
+        </Grid>
+      </Grid>
+    </Grid>
   )
 }

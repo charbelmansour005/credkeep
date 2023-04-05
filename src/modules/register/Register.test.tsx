@@ -9,8 +9,11 @@ describe("Register", () => {
     const form = screen.getByTestId("form-box")
     expect(form).toBeInTheDocument()
 
-    const outerBox = screen.getByTestId("outer-box")
-    expect(outerBox).toBeInTheDocument()
+    const outerGrid1 = screen.getByTestId("outer-grid-1")
+    expect(outerGrid1).toBeInTheDocument()
+
+    const outerGrid2 = screen.getByTestId("outer-grid-2")
+    expect(outerGrid2).toBeInTheDocument()
 
     const innerBox = screen.getByTestId("inner-box")
     expect(innerBox).toBeInTheDocument()

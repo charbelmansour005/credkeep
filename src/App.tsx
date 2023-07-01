@@ -1,4 +1,4 @@
-import Register from "./modules/register/Register"
+import Register from "./modules/register"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 

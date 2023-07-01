@@ -17,7 +17,6 @@ export const register = async (
       password: password,
     }
     const response = await axios.post(registerURL, data)
-    console.log(response.data)
     // return response
   } catch (error) {
     console.log(error)

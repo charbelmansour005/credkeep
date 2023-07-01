@@ -1,5 +1,11 @@
+// create a dashboard screen using MUI library
+
 import React from "react"
 
 export default function DashboardScreen() {
-  return <div>index</div>
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+  )
 }

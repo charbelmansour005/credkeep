@@ -6,8 +6,8 @@ export default function HeaderLogo() {
       alt="logo"
       src={Logo}
       style={{
-        height: "285px",
-        width: "285px",
+        height: "255px",
+        width: "255px",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "100%",

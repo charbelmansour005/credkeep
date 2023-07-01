@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "test-utils"
-import Register from "./Register"
+import Register from "modules/dashboard/Dashboard"
 import user from "@testing-library/user-event"
 
 describe("Register", () => {

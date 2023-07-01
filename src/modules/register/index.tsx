@@ -1,27 +1,20 @@
 import { ChangeEvent, useCallback, useState } from "react"
-import {
-  TextField,
-  Box,
-  InputAdornment,
-  IconButton,
-  // useMediaQuery,
-  // Theme,
-  Grid,
-} from "@mui/material"
+import { TextField, Box, InputAdornment, IconButton, Grid } from "@mui/material"
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material"
 import Header from "modules/register/components/header/Header"
-import { MyTextField } from "modules/common/MyTextField"
-import { register } from "modules/register/services/Register"
+import { MyTextField } from "modules/common/components/MyTextField"
+import { register } from "modules/register/core/Register"
 import Footer from "modules/register/components/footer/Footer"
 import HeaderLogo from "modules/register/components/header/HeaderLogo"
 
 export default function Register() {
+  type Nullable = string | null
   const [visible, setVisible] = useState<boolean>(false)
-  const [email, setEmail] = useState<string | null>(null)
-  const [firstName, setFirstName] = useState<string | null>(null)
-  const [lastName, setLastName] = useState<string | null>(null)
-  const [phoneNumber, setPhoneNumber] = useState<string | null>(null)
-  const [password, setPassword] = useState<string | null>(null)
+  const [email, setEmail] = useState<Nullable>(null)
+  const [firstName, setFirstName] = useState<Nullable>(null)
+  const [lastName, setLastName] = useState<Nullable>(null)
+  const [phoneNumber, setPhoneNumber] = useState<Nullable>(null)
+  const [password, setPassword] = useState<Nullable>(null)
 
   const handleEmailChange = (value: string) => {
     setEmail(value)
@@ -43,10 +36,6 @@ export default function Register() {
     setPassword(event.target.value)
   }
 
-  // const isScreenSmall = useMediaQuery((theme: Theme) =>
-  //   theme.breakpoints.down("sm")
-  // )
-
   const handleRegister = useCallback(() => {
     register(email, firstName, lastName, phoneNumber, password)
     setEmail("")
@@ -56,19 +45,21 @@ export default function Register() {
     setPassword("")
   }, [email, firstName, lastName, phoneNumber, password])
 
+  const parentGridStyle = {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh",
+    background:
+      "linear-gradient(45deg, #f95959,#ffffff,#ffffff,#ffffff, #ffffff)",
+  }
+
   return (
     <Grid
       component={"form"}
       data-testid="form-box"
       container
-      sx={{
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-        background:
-          "linear-gradient(45deg, #f95959,#ffffff,#ffffff,#ffffff, #ffffff)",
-      }}
+      sx={parentGridStyle}
     >
       <Grid
         data-testid="outer-grid-1"
@@ -123,20 +114,18 @@ export default function Register() {
               value={firstName}
             />
           </Box>
-          <Box>
-            <MyTextField
-              id="outlined-basic-lastname"
-              label="Last name"
-              onChange={handleLastNameChange}
-              value={lastName}
-            />
-            <MyTextField
-              id="outlined-basic-phonenumber"
-              label="Phone number"
-              onChange={handlePhoneNumberChange}
-              value={phoneNumber}
-            />
-          </Box>
+          <MyTextField
+            id="outlined-basic-lastname"
+            label="Last name"
+            onChange={handleLastNameChange}
+            value={lastName}
+          />
+          <MyTextField
+            id="outlined-basic-phonenumber"
+            label="Phone number"
+            onChange={handlePhoneNumberChange}
+            value={phoneNumber}
+          />
           <TextField
             label="Password"
             id="outlined-start-adornment"
